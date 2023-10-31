@@ -126,8 +126,8 @@ startGame();
 
 // redireccion de paginas
 function init() {
-  location.href = "/index.html";
+  location.href = "../index.html";
 }
 function redireccion() {
-  location.href = "/pages/sports.html";
+  location.href = "../pages/sports.html";
 }
