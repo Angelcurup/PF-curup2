@@ -69,7 +69,7 @@ getNewQuestion = () => {
     localStorage.setItem('mostRecentScore', score);
 
     // ir al final de la pagina
-    return window.location.assign("/pages/end.html");
+    return window.location.assign("../pages/end.html");
   }
 
   questionCounter++;
@@ -123,11 +123,3 @@ incrementScore = num => {
 }
 
 startGame();
-
-// redireccion de paginas
-function init() {
-  location.href = "../index.html";
-}
-function redireccion() {
-  location.href = "../pages/sports.html";
-}

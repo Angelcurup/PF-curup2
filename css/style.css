@@ -167,6 +167,10 @@ body {
 .hud-close {
   width: 70px;
   height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   border-radius: 50%;
   background: none;
   font-size: 2rem;
@@ -213,6 +217,7 @@ body {
 .sports__questions {
   padding: 20px 40px;
 }
+
 
 .sports {
   width: 100%;
