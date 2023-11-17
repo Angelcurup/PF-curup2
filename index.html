@@ -10,81 +10,26 @@
 </head>
 <body>
     <div class="quiz__app">
-        <!-- Head-perfil -->
         <div class="quiz__head">
-            <div>
-                <h1 class="quiz__title">Hi, John</h1>
-                <span class="quiz__span">let's make this day productive</span>
-            </div>
-            <div class="quiz__perfil">
-                <img src="img/usuario.png">
-            </div>
+            <h1 class="quiz__title">Hi!</h1>
+            <span class="quiz__span">Let's make this day productive</span>
         </div>
-
-        <!-- Clasification -->
-        <section class="quiz__position">
-            <div class="position__ranking">
-                <div class="ranking__img">
-                    <img src="img/trofeo.png" alt="Trofeo" class="ranking__img--bg">
-                </div>
-                <div class="ranking__points">
-                    <h2 class="ranking__title">Ranking</h2>
-                    <span >123</span>
-                </div>
+       <div class="quiz__ranking">
+            <a class="ranking__btn" href="pages/highScore.html">
+                <img class="ranking__img" src="img/trofeo.png" >
+                <span class="ranking__span2">Ranking</span>
+            </a>
+       </div>
+       <div class="quiz__play">
+                <h2 class="quiz__sub">Lest's Play</h2>
+            <div class="quiz__questions">
+                <a id="btnBg" class="quiz__bg" href="pages/questions.html">
+                    <i></i>
+                    <i></i>
+                    <span class="ranking__span">Play game</span>
+                </a>
             </div>
-            <div class="position__points">
-                <div class="points__img">
-                    <img src="img/dolar.png" alt="Trofeo" class="points__img--bg">
-                </div>
-                <div class="points__money">
-                    <h2 class="points__title">Points</h2>
-                    <span>123</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Category -->
-        <main class="quiz__category">
-                <h2 class="category__title">Let's play</h2>
-            <section class="category__questions">
-                <a class="questions__sports questions--bg" href="sports.html">
-                    <div class="sports__img">
-                        <img src="img/baloncesto.png" class="sports__img--bg">
-                    </div>
-                    <div class="sports__question">
-                        <h2 class="sports__title">Sports</h2>
-                        <span class="sports__numbers">50 questions</span>
-                    </div>
-                </a>
-                <a class="questions__history questions--bg" href="sports.html">
-                    <div class="history__img">
-                        <img src="img/historia.png" class="history__img--bg">
-                    </div>
-                    <div class="history__questions">
-                        <h2 class="history__title">History</h2>
-                        <span class="history__numbers">50 questions</span>
-                    </div>
-                </a>
-                <a class="questions__geo questions--bg" href="sports.html">
-                    <div class="geo__img">
-                        <img src="img/mapa.png" class="geo__img--bg">
-                    </div>
-                    <div class="geo__questions">
-                        <h2 class="geo__title">Geography</h2>
-                        <span class="geo__numbers">50 questions</span>
-                    </div>
-                </a>
-                <a class="questions__math questions--bg" href="sports.html">
-                    <div class="math__img">
-                        <img src="img/matematicas.png" class="math__img--bg">
-                    </div>
-                    <div class="math__questions">
-                        <h2 class="math__title">Math</h2>
-                        <span class="math__numbers">50 questions</span>
-                    </div>
-                </a>
-            </section>
-        </main>
+       </div>
     </div>
 
 </body>

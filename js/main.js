@@ -9,52 +9,44 @@ let score = 0;
 let questionCounter = 0;
 let avalibleQuestion = [];
 // Questions-Sports
-let questions = [
-  {
-    question: "What is the most popular sport throughout the worl?",
-    choice1: "Volleyball",
-    choice2: "Football",
-    choice3: "Basketball",
-    choice4: "Badminton",
-    answer: 2,
-  },
-  {
-    question: "Who is considered the best basketball player of all time?",
-    choice1: "LeBron James",
-    choice2: "Kobe Bryant",
-    choice3: "Kareem Abdul-Jabbar",
-    choice4: "Micheal Jordan",
-    answer: 4,
-  },
-  {
-    question: "In which country was volleyball invented?",
-    choice1: "Canada",
-    choice2: "United States",
-    choice3: "Spain",
-    choice4: "Japan",
-    answer: 2,
-  },
-  {
-    question: "Who won four consecutive Formula 1 world championships?",
-    choice1: "Max Verstappen",
-    choice2: "Sergio Pérez",
-    choice3: "Sebastián Vettel",
-    choice4: "Pierre Gasly",
-    answer: 3,
-  },
-  {
-    question: "Who won the 2010 World Cup?",
-    choice1: "Spain",
-    choice2: "Brazil",
-    choice3: "Mexico",
-    choice4: "Argentina",
-    answer: 1,
-  },
-];
+let questions = [];
+fetch(
+  "https://opentdb.com/api.php?amount=20&category=23&difficulty=easy&type=multiple"
+)
+  .then((res) => {
+    console.log(res);
+    return res.json();
+  })
+  .then((loadedQuestions) => {
+    console.log(loadedQuestions);
+    questions = loadedQuestions.results.map((loadedQuestion) => {
+      const formattedQuestion = {
+        question: loadedQuestion.question,
+      };
+
+      const answerChoices = [...loadedQuestion.incorrect_answers];
+      formattedQuestion.answer = Math.floor(Math.random() * 3) + 1;
+      answerChoices.splice(
+        formattedQuestion.answer - 1,
+        0,
+        loadedQuestion.correct_answer
+      );
+
+      answerChoices.forEach((choice, index) => {
+        formattedQuestion["choice" + (index + 1)] = choice;
+      });
+
+      return formattedQuestion;
+    });
+    startGame();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 //constants
-const points = 20;
-const maxQuestions = 5;
+const points = 5;
+const maxQuestions = 20;
 
 startGame = () => {
   questionCounter = 0;
@@ -66,17 +58,17 @@ startGame = () => {
 // mostrar pregunta en html
 getNewQuestion = () => {
   if (avalibleQuestion.length === 0 || questionCounter > maxQuestions) {
-    localStorage.setItem('mostRecentScore', score);
+    localStorage.setItem("mostRecentScore", score);
 
     // ir al final de la pagina
-    return window.location.assign("end.html");
+    return window.location.assign("../pages/end.html");
   }
 
   questionCounter++;
   questionCounterText.innerText = `${questionCounter}/${maxQuestions}`;
   // progres-bar
   console.log(`Progres-bar: ` + (questionCounter / maxQuestions) * 100);
-  progresBarFull.style.width = `${(questionCounter / maxQuestions) * 100}%`
+  progresBarFull.style.width = `${(questionCounter / maxQuestions) * 100}%`;
 
   const questionIndex = Math.floor(Math.random() * avalibleQuestion.length);
   currentQuestion = avalibleQuestion[questionIndex];
@@ -102,24 +94,29 @@ choices.forEach((choice) => {
     const classToApply =
       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
-    if (classToApply == 'correct') {
-      incrementScore(points)
-      console.log('Score: ' + score);
+    if (classToApply == "correct") {
+      incrementScore(points);
+      console.log("Score: " + score);
     }
 
     selectedChoice.parentElement.classList.add(classToApply);
 
-    setTimeout( () => {
-      selectedChoice.parentElement.classList.remove(classToApply)
+    setTimeout(() => {
+      selectedChoice.parentElement.classList.remove(classToApply);
 
       console.log(`Answer: ${choice.innerText} ` + classToApply);
       getNewQuestion();
-    }, 2000)
+    }, 2000);
   });
 });
 
-incrementScore = num => {
+incrementScore = (num) => {
   score += num;
-}
+};
 
-startGame();
+let btn = document.getElementById("btnBg");
+btn.addEventListener("mousemove", (e) => {
+  let rect = e.target.getBoundingClientRect();
+  let x = e.clientX * 3 - rect.left;
+  btn.style.setProperty("--x", x + "deg");
+});
